@@ -19,7 +19,9 @@ SHOWFIG	  = 0; % show images during point extraction
 STEP4STAT = 1; % step for computing average and std images, if 1 then all images taken
 
 % Read configuration from whatever is specified on command-line (via --config=FILENAME)
-config = read_configuration();
+% config = read_configuration();
+config = read_configuration('../../TestDataOneSide/TestDataOneSide.cfg');
+config.expname = 'non_o_s_c_a_r';
 
 im.dir = config.paths.img;
 im.ext = config.files.imgext;

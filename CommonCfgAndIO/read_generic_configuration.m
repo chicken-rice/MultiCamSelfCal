@@ -23,6 +23,7 @@ end
 config_dir = fileparts(config_fullpath);
 
 if (config_dir(end) ~= '/')
+   config_dir = strrep(config_dir, '\', '/');
    config_dir = strcat(config_dir,'/')
 end
 
