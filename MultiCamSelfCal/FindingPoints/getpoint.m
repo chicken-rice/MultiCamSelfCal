@@ -24,6 +24,14 @@ function [pos,err] = getpoint(imname, showfig, imconfig, avIM, stdIM)
 err = 0;
 
 foo = ver('images');
+
+if size(foo, 1) == 0
+    foo = ver('image');
+    if foo.Version(1) >= 1
+       foo.Version = '5.0';
+    end
+end
+
 IPT_VER = str2num(foo.Version(1));
 if IPT_VER >= 5
   region_properties_function = 'regionprops';

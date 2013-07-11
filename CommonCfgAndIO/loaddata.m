@@ -22,15 +22,28 @@ USED_MULTIPROC = 0;		% was the multipropcessing used?
 						% monoprocessor see the IM2POINTS, IM2PMULTIPROC.PL
 
 %%%
+
+v = version; Octave = v(1)<'5';  % Crude Octave test
+
 % read the data structures
 if ~USED_MULTIPROC
   try,
 	Ws	   = load(config.files.points);	% distorted points as found by Im2Points
 	IdMat  = load(config.files.IdMat);	% see function im2points for detailed comments	
+
+        if Octave
+            Ws = Ws.Ws;
+            IdMat = IdMat.IdMat;
+        end
+
 	%%%
 	% try,load the file with Images resolutions which is on of the output files
 	% from finding LEDs procedure or take the pre-defined resolutions specified in the configdata
 	try, Res = load(config.files.Res); catch,  Res   = repmat(config.imgs.res,size(IdMat,1),1); end
+
+        if Octave
+            Res = Res.Res;
+        end
 
 	resample_factor = config.cal.USE_NTH_FRAME;
 	if resample_factor ~= 1
